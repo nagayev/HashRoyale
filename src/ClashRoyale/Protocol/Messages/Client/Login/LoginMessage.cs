@@ -76,6 +76,14 @@ namespace ClashRoyale.Protocol.Messages.Client.Login
 
             var player = await Resources.Players.Login(UserId, UserToken);
 
+            if (Resources.Configuration.BannedIds.Contains(UserId))
+            {
+                await new LoginFailedMessage(Device)
+                {
+                    Reason = "Your account has been banned."
+                }.SendAsync();
+            }
+
             if (player != null)
             {
                 Device.Player = player;

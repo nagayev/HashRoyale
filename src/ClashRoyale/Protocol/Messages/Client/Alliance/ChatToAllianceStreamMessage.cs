@@ -1,7 +1,9 @@
 using System;
 using System.Linq;
 using ClashRoyale.Database;
+using ClashRoyale.Database.Cache;
 using ClashRoyale.Logic;
+using ClashRoyale.Logic.Clan;
 using ClashRoyale.Logic.Clan.StreamEntry.Entries;
 using ClashRoyale.Logic.Home.Decks;
 using ClashRoyale.Protocol.Messages.Server;
@@ -23,6 +25,18 @@ namespace ClashRoyale.Protocol.Messages.Client.Alliance
         public override void Decode()
         {
             Message = Reader.ReadScString();
+        }
+
+        public void SendMessage(string message, Logic.Clan.Alliance alliance)
+        {
+            var entry = new ChatStreamEntry
+            {
+                Message = message
+            };
+
+            entry.SetSender(Device.Player);
+
+            alliance.AddEntry(entry);
         }
 
         public override async void Process()
@@ -192,7 +206,7 @@ namespace ClashRoyale.Protocol.Messages.Client.Alliance
                                 var entry = new ChatStreamEntry
                                 {
                                     Message =
-                                    $"List of commands:\n/max - open all cards max. level\n/unlock - open all cards\n/gold x - give out gold, where x - amount of gold\n/ gems x - give out gems, where x - amount of gems\n/ status - a command that shows the server status (needed for admins)\n / free - resets the timer of the free chest\n/trophies x - adds trophies, where x - the number of trophies (can be negative)\n/ set x - the specified number of trophies is available, where x - the number of trophies"
+                                    $"List of commands:\n/max - open all cards max. level\n/unlock - open all cards\n/gold x - give out gold, where x - amount of gold\n/ gems x - give out gems, where x - amount of gems\n/ status - a command that shows the server status (needed for admins)\n / free - resets the timer of the free chest\n/ trophies x - adds trophies, where x - the number of trophies (can be negative)\n/ set x - the specified number of trophies is available, where x - the number of trophies\n/ ban x - bans the user, where x - the user ID"
                                 };
 
                                 entry.SetSender(Device.Player);
@@ -213,6 +227,55 @@ namespace ClashRoyale.Protocol.Messages.Client.Alliance
                             }
                             break;    
                     }
+
+                    case "/ban":
+                        if (ClashRoyale.Extensions.Utils.AdminUtils.CheckIfAdmin((int)Device.Player.Home.Id))
+                        {
+                            var player = await PlayerDb.GetAsync(cmdValue);
+
+                            if (player == null)
+                            {
+                                SendMessage($"player with ID {cmdValue} was not found.", alliance);
+                                break;
+                            }
+
+                            Resources.Configuration.BannedIds.Add(player.Home.Id);
+                            Resources.Configuration.Save();
+                            Resources.Configuration.Initialize();
+                            SendMessage($"The player with ID {cmdValue} has been banned.", alliance);
+                            Logger.Log($"The player with ID {cmdValue} has been banned.", GetType());
+                        }
+                        else SendMessage("only admins can use / commands.", alliance);
+                        break;
+
+                    case "/admin":
+                        if (ClashRoyale.Extensions.Utils.AdminUtils.CheckIfAdmin((int)Device.Player.Home.Id))
+                        {
+                            var player = await PlayerDb.GetAsync(cmdValue);
+
+                            if (player == null)
+                            {
+                                SendMessage($"player with ID {cmdValue} was not found.", alliance);
+                                break;
+                            }
+
+                            Resources.Configuration.Admins.Add(player.Home.Id);
+                            Resources.Configuration.Save();
+                            Resources.Configuration.Initialize();
+                            SendMessage($"player with ID {cmdValue} is now an admin.", alliance);
+                            Logger.Log($"player with ID {cmdValue} is now an admin.", GetType());
+                        }
+                        else SendMessage("only admins can use / commands.", alliance);
+                        break;
+
+                    case "/level":
+                        if (ClashRoyale.Extensions.Utils.AdminUtils.CheckIfAdmin((int)Device.Player.Home.Id))
+                        {
+                            Device.Player.Home.ExpLevel = cmdValue;
+                            Device.Disconnect();
+                        }
+                        else SendMessage("only admins can use / commands.", alliance);
+                        break;
 
                     case "/set":
                     {

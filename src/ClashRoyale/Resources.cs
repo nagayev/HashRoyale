@@ -68,6 +68,9 @@ namespace ClashRoyale
                 $"Successfully loaded MySql with {await PlayerDb.CountAsync()} player(s) & {await AllianceDb.CountAsync()} clan(s)",
                 null);
 
+            Logger.Log($"Admins: {Configuration.Admins.Count}", null);
+            Logger.Log($"Banned users: {Configuration.BannedIds.Count}", null);
+
             ObjectCache = new ObjectCache();
 
             Battles = new Battles();

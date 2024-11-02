@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using ClashRoyale.Logic.Battle;
 using ClashRoyale.Logic.Home;
@@ -48,9 +49,8 @@ namespace ClashRoyale.Core
         [JsonProperty("BattleLog_WebhookUrl")] public string BL_Webhook;
         [JsonProperty("PlayerLog_WebhookUrl")] public string Plr_Webhook;
         [JsonProperty("ServerLog_WebhookUrl")] public string Srv_Webhook;
-        [JsonProperty("AdminID1")] public int admin1;
-        [JsonProperty("AdminID2")] public int admin2;
-        [JsonProperty("AdminID3")] public int admin3;
+        [JsonProperty("admins")] public List<long> Admins;
+        [JsonProperty("banned_ids")] public List<long> BannedIds;
         [JsonProperty("GemsToGiveAfterMatch")] public int gemsreward;
         [JsonProperty("GoldToGiveAfterMatch")] public int goldreward;
         [JsonProperty("ErrorLogWebhook")] public string error_webhook;
@@ -96,9 +96,8 @@ namespace ClashRoyale.Core
                     Srv_Webhook = config.Srv_Webhook;
                     Plr_Webhook = config.Plr_Webhook;
                     BL_Webhook = config.BL_Webhook;
-                    admin1 = config.admin1;
-                    admin2 = config.admin2;
-                    admin3 = config.admin3;
+                    Admins = config.Admins;
+                    BannedIds = config.BannedIds;
 
                     gemsreward = config.gemsreward;
                     goldreward = config.goldreward;

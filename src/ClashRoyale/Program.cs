@@ -10,17 +10,16 @@ namespace ClashRoyale
     {
         private static void Main()
         {
-            Console.Title = "ZrdRoyale";
-            Console.ForegroundColor = ConsoleColor.Green;
-            
-            Console.WriteLine(
-                " _____            ______                    __   \n/__  /  _________/ / __ \\____  __  ______ _/ /__  \n  / /  / ___/ __  / /_/ / __ \\/ / / / __ `/ / _ \\ \n / /__/ /  / /_/ / _, _/ /_/ / /_/ / /_/ / /  __/ \n/____/_/   \\__,_/_/ |_|\\____/\\__, /\\__,_/_/\\___/ \n                            /____/               \n");
+            Console.Title = "HashRoyale";
+            //Console.ForegroundColor = ConsoleColor.Green;
+
+            Console.WriteLine("\r\n    __  __              __     ____                        __    \r\n   / / / /____ _ _____ / /_   / __ \\ ____   __  __ ____ _ / /___ \r\n  / /_/ // __ `// ___// __ \\ / /_/ // __ \\ / / / // __ `// // _ \\\r\n / __  // /_/ /(__  )/ / / // _, _// /_/ // /_/ // /_/ // //  __/\r\n/_/ /_/ \\__,_//____//_/ /_//_/ |_| \\____/ \\__, / \\__,_//_/ \\___/ \r\n                                         /____/                  \r\n");
+            Console.WriteLine("Fork of ZrdRoyale by Hashmane");
+            Console.WriteLine("Thanks to Zordon1337 for work on orginal version of ZrdRoyale");
             Resources.Initialize();
-            Console.WriteLine("Thanks to Incredible for work on orginal version of CR server");
-            Console.WriteLine("Fork of RetroRoyale by Zordon1337");
            
-            Console.WriteLine(Resources.Configuration.goldreward);
-            Console.WriteLine(Resources.Configuration.gemsreward);
+            //Console.WriteLine("Gold reward: " + Resources.Configuration.goldreward);
+            //Console.WriteLine("Gems reward: " + Resources.Configuration.gemsreward);
             WebhookUtils.SendNotify(Resources.Configuration.Srv_Webhook, Resources.LangConfiguration.SrvStarting, "Server Log");
             if (ServerUtils.IsLinux())
             {

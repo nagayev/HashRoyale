@@ -1,37 +1,25 @@
-# ClashRoyale (2017)
+# <p align="center">HashRoyale<p><p align="center">Clash Royale server for version 1.9.2<p>
 [![clash royale](https://img.shields.io/badge/Clash%20Royale-1.9.2-brightred.svg?style=flat")](https://clash-royale.en.uptodown.com/android/download/1632865)
+[![patched client](https://img.shields.io/badge/Patched_APK-1.9.2-7b00bd)](https://retroroyale.en.malavida.com/android/)
+[![wiki](https://img.shields.io/badge/Wiki-HashRoyale-00bd8e)](https://github.com/Hashmane/HashRoyale/wiki)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-![Build Status](https://action-badges.now.sh/Zordon1337/ZrdRoyale)
 
 -----------------------------------------
-## ✔What was added/changed in this fork✔
-1. Fixed DB(before fixing saving players progress always failed due to non existing column)<br /> 
-2. Only admins can use chat commands(add gems, trophies etc)<br/> 
-3. Fixed chests not removing gems after buying<br/>
-4. Discord webhook logging(players connections,disconnections, battle logs etc)
-5. fixed bug where player after arena 7 were playing on wrong arena for example player on arena 9 was playing on frozen peak which is map from arena 8
-6. Gems and gold rewards after win.
-7. Now server is more customizable without recompiling it, now you can edit:
-``` 
-Minimum Trophies and Maximum Trophies after Win
-Default amount of gems and gold
-Gems and gold rewards after win
-Admins
-```
+## 🏆 Fork Features 🏆
+1. New chat commands
+2. Infinite number of Admins
+3. Player bans
 
-# TODO ✅
-```
-Fix trophies after winning
-fix free chests bug on arena 10
-Remake README.md
-```
-## Clash royale server for version 1.9.2/1.9.3 written in .NET
-
+## ✅ TODO ✅
+1. Access management for chat commands (some commands will be available to regular players, while others will be exclusive to admins)
+2. Add new chat commands
+3. Finish the Wiki
+4. Improve README.md
 
 ## Battles
 The server supports battles, for those a patched client is neccessary.
 
-[See the wiki for a tutorial](https://github.com/Erder00/ZrdRoyale/wiki)
+[See the wiki for a tutorial](https://github.com/Hashmane/HashRoyale/wiki)
 
 ## How to start
 
@@ -42,11 +30,18 @@ The server supports battles, for those a patched client is neccessary.
 for Ubuntu use these commands to set it up:
 ```
 mkdir ClashRoyale
-git clone https://github.com/Zordon1337/ZrdRoyale.git && cd ClashRoyale/src/ClashRoyale
+git clone https://github.com/Hashmane/HashRoyale.git && cd ClashRoyale/src/ClashRoyale
 
 dotnet publish
 ```
-Run the server once to create the config.json file. (dotnet bin/Release/net8.0/ClashRoyale.dll)
+For Windows:
+```
+git clone https://github.com/Hashmane/HashRoyale.git
+cd ClashRoyale/src/ClashRoyale
+dotnet publish
+```
+
+Run the server once to create the config.json file: ```dotnet bin/Release/net8.0/ClashRoyale.dll```
 
 To configurate your server, such as the database you have to edit the ```config.json``` file.
 
@@ -55,7 +50,7 @@ Run it again to actually start it: ```dotnet bin/Release/net8.0/ClashRoyale.dll`
 It should look like this:
 
 
-![running server](https://i.imgur.com/QKKW9QV.png)
+![running server](https://i.imgur.com/qPYfRdH.png)
 
 #### Run the server:
 
@@ -73,4 +68,4 @@ It should look like this:
 ```git pull && dotnet publish "ClashRoyale.Battles.csproj" -c Release -o app && dotnet ClashRoyale.Battles/bin/Release/netcoreapp3.1/ClashRoyale.Battles.dll```
 
 ## Need help?
-Contact me on Telegram (https://t.me/TZordon) or open an issue.
+Contact me on Telegram (https://t.me/alhorm13) or open an issue.
