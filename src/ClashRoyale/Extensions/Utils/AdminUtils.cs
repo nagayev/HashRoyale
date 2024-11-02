@@ -8,9 +8,7 @@ namespace ClashRoyale.Extensions.Utils
     {
         public static bool CheckIfAdmin(int id)
         {
-            if(id == Resources.Configuration.admin1 ^ id == Resources.Configuration.admin2 ^ id == Resources.Configuration.admin3)
-                return true;
-            return false;
+            return Resources.Configuration.Admins.Contains(id);
         }
     }
 }
