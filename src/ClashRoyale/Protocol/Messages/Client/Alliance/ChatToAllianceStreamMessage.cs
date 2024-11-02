@@ -206,7 +206,7 @@ namespace ClashRoyale.Protocol.Messages.Client.Alliance
                                 var entry = new ChatStreamEntry
                                 {
                                     Message =
-                                    $"List of commands:\n/max - open all cards max. level\n/unlock - open all cards\n/gold x - give out gold, where x - amount of gold\n/ gems x - give out gems, where x - amount of gems\n/ status - a command that shows the server status (needed for admins)\n / free - resets the timer of the free chest\n/ trophies x - adds trophies, where x - the number of trophies (can be negative)\n/ set x - the specified number of trophies is available, where x - the number of trophies\n/ ban x - bans the user, where x - the user ID"
+                                    $"List of commands:\n/max - open all cards max\n/unlock - open all cards\n/gold x - give out gold, where x - amount of gold\n/gems x - give out gems, where x - amount of gems\n/status - a command that shows the server status (needed for admins)\n/free - resets the timer of the free chest\n/trophies x - adds trophies, where x - the number of trophies (can be negative)\n/set x - the specified number of trophies is available, where x - the number of trophies\n/ban x - bans the user, where x - the user ID\n/admin x - makes the user an admin, where x - the user ID\n/level x - sets the level of the player, where x - level"
                                 };
 
                                 entry.SetSender(Device.Player);

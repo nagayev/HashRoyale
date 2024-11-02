@@ -9,6 +9,7 @@
 1. New chat commands
 2. Infinite number of Admins
 3. Player bans
+4. Fixed CSV files
 
 ## ✅ TODO ✅
 1. Access management for chat commands (some commands will be available to regular players, while others will be exclusive to admins)
