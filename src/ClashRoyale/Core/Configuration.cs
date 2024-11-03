@@ -49,8 +49,8 @@ namespace ClashRoyale.Core
         [JsonProperty("BattleLog_WebhookUrl")] public string BL_Webhook;
         [JsonProperty("PlayerLog_WebhookUrl")] public string Plr_Webhook;
         [JsonProperty("ServerLog_WebhookUrl")] public string Srv_Webhook;
-        [JsonProperty("admins")] public List<long> Admins;
-        [JsonProperty("banned_ids")] public List<long> BannedIds;
+        [JsonProperty("admins")] public List<long> Admins = new List<long>();
+        [JsonProperty("banned_ids")] public List<long> BannedIds = new List<long>();
         [JsonProperty("GemsToGiveAfterMatch")] public int gemsreward;
         [JsonProperty("GoldToGiveAfterMatch")] public int goldreward;
         [JsonProperty("ErrorLogWebhook")] public string error_webhook;
